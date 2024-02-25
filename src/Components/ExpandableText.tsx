@@ -3,25 +3,25 @@ import Button from "./Button";
 
 interface Props {
   children: string;
-  maxLength: number;
+  maxLength?: number;
 }
 
-const ExpandableText = ({ children, maxLength }: Props) => {
+const ExpandableText = ({ children, maxLength = 10 }: Props) => {
   const [isWhole, setIsWhole] = useState(false);
   return (
-    <div>
+    <p>
       {!isWhole ? (
-        <div>
-          {children.slice(0, maxLength - 1) + "..."}
+        <p>
+          {children.slice(0, maxLength - 1)}...
           <Button
             name="More"
             onClick={() => {
               setIsWhole(true);
             }}
           ></Button>
-        </div>
+        </p>
       ) : (
-        <div>
+        <p>
           {children}
           <Button
             name="Less"
@@ -29,9 +29,9 @@ const ExpandableText = ({ children, maxLength }: Props) => {
               setIsWhole(false);
             }}
           ></Button>
-        </div>
+        </p>
       )}
-    </div>
+    </p>
   );
 };
 
